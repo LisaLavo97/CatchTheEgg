@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title> Catch the egg! </title>
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="init-menu" id="init-menu">
+    <h1> Catch the Egg! </h1>
+    <button class="play-button" id="playLevel_1" onclick="setLevel(1), openGame(), closeMenu()">Play Level 1</button>
+    <button class="play-button" id="playLevel_2" onclick="setLevel(2), openGame(), closeMenu()">Play Level 2</button>
+    <button class="play-button" id="playLevel_3" onclick="setLevel(3), openGame(), closeMenu()">Play Level 3</button>
+  </div>
+
+  <div class="game-container" id="game-container">
+    <canvas id="canvas" width="1170" height="660"></canvas>
+    <div id="score" class="sidenav"> Score: <span id="punteggio"></span></div><br>
+    <div id="life" class="sidenav"> Life: <span id="vita"></span></div><br>
+    <div id="info" class="sidenav"> Use mouse to control</div>
+    <div id="branch"></div>
+    <div id="hen1" class="hen"></div>
+    <div id="hen2" class="hen"></div>
+    <div id="hen3" class="hen"></div>
+    <div id="basket"></div>
+
+    <script src="variables.js"></script>
+    <script src="dragHandler.js"></script>
+    <script src="functions.js"></script>
+    <script src="myGame.js"></script>
+  </div>
+</body>
+</html>
