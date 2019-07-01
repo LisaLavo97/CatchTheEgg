@@ -139,9 +139,10 @@ function check_egg_hits_canvas(egg) {
 
 function check_egg_hits_basket(egg) {
     var basketTop = basket.offsetTop - canvas.offsetTop;
+    var basketHalf = basketTop + 10;
     var basketLeft = basket.offsetLeft - canvas.offsetLeft;
     var basketRight = basketLeft + 78;
-    if((egg.y >= basketTop) && (egg.x <= basketRight) && (egg.x >= basketLeft) && (basketTop > 135)) {
+    if((egg.y >= basketTop) && (egg.y <= basketHalf) && (egg.x <= basketRight) && (egg.x >= basketLeft) && (basketTop > 135)) {
         score = score + 1;
         document.getElementById("punteggio").innerHTML = score;
         return true;
@@ -151,7 +152,8 @@ function check_egg_hits_basket(egg) {
 
 function check_basket_pos() {
     var basketTop = basket.offsetTop - canvas.offsetTop;
-    if(basketTop > 770 || basketTop < -60) {
+    var basketLeft = basket.offsetLeft - canvas.offsetLeft
+    if(basketTop > 770 || basketTop < -60 || basketLeft < -70 || basketLeft > 1240) {
         basket.style.top = 580 + "px";
         basket.style.left = 630 + "px";
     }
@@ -159,8 +161,6 @@ function check_basket_pos() {
 
 function check_hen_hits_canvas(hen) {
     var tmp = canvas.width - canvas.offsetLeft;
-    console.log("tmp:", tmp);
-    console.log("count:", hen.moving_count);
     return (hen.moving_count >= tmp);
 }
 
