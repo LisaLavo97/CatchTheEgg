@@ -46,11 +46,11 @@ var egg2 = new egg(egg2_init_x, eggs_init_y, hen_2);
 var egg3 = new egg(egg3_init_x, eggs_init_y, hen_3);
 
 egg1.img.src = 'images/ovo.png';
-egg1.bullsEye.img.src = 'images/bullseye1.png';
+egg1.bullsEye.img.src = 'images/bullseye.png';
 egg2.img.src = 'images/ovo.png';
-egg2.bullsEye.img.src = 'images/bullseye1.png';
+egg2.bullsEye.img.src = 'images/bullseye.png';
 egg3.img.src = 'images/ovo.png';
-egg3.bullsEye.img.src = 'images/bullseye1.png';
+egg3.bullsEye.img.src = 'images/bullseye.png';
 
 document.getElementById("punteggio").innerHTML = score;
 document.getElementById("vita").innerHTML = life;
