@@ -5,29 +5,28 @@ function dragBasket(basket) {
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        // get the mouse cursor position at startup:
+        // prendi la posizione iniziale del mouse
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
+        // chiama questa funzione ogni volta che il mouse si muove
         document.onmousemove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
+        // calcola la nuova posizione del mouse
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
+        // setto la nuova posizione dell'elemento
         basket.style.top = (basket.offsetTop - pos2) + "px";
         basket.style.left = (basket.offsetLeft - pos1) + "px";
     }
 
     function closeDragElement() {
-        /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;
     }

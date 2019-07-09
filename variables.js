@@ -4,8 +4,6 @@ var canvas = document.getElementById('canvas');
     firstTime = true,
     score = 0,
     life = 5,
-    primaZig = true,
-    primaMov = true,
     egg1_init_x = 125,
     egg2_init_x = 560,
     egg3_init_x = 995;
@@ -22,17 +20,20 @@ var Hen = function(hen, bool, count, init_x) {
     this.zig_zag_count = init_x;
 }
 
-var bullsEye = function(x,y) {
+/*var bullsEye = function(x, y, uovoRotto) {
     this.x = x;
     this.y = y;
-    this.img = new Image();
-}
+    this.uovoRotto = document.getElementById(uovoRotto);
+    //this.img = new Image();
+}*/
 
-var egg = function(x, y, hen) {
+var egg = function(x, y, hen, uovoRotto) {
+    this.init_x = x;
     this.x = x;
     this.y = y;
     this.img = new Image();
-    this.bullsEye = new bullsEye(x,bullsEye_init_y);
+    //this.bullsEye = new bullsEye(x,bullsEye_init_y,uovoRotto);
+    this.bullseye = document.getElementById(uovoRotto);
     this.hen = hen;
     this.bool = 1;
 }
@@ -41,16 +42,16 @@ var hen_1 = new Hen("hen1", 0, 0, 145);
 var hen_2 = new Hen("hen2", 1, 0, 580);
 var hen_3 = new Hen("hen3", 1, 0, 1015);
 
-var egg1 = new egg(egg1_init_x, eggs_init_y, hen_1);
-var egg2 = new egg(egg2_init_x, eggs_init_y, hen_2);
-var egg3 = new egg(egg3_init_x, eggs_init_y, hen_3);
+var egg1 = new egg(egg1_init_x, eggs_init_y, hen_1, "bullsEye1");
+var egg2 = new egg(egg2_init_x, eggs_init_y, hen_2, "bullsEye2");
+var egg3 = new egg(egg3_init_x, eggs_init_y, hen_3, "bullsEye3");
 
 egg1.img.src = 'images/ovo.png';
-egg1.bullsEye.img.src = 'images/bullseye.png';
+//egg1.bullsEye.img.src = 'images/bullseye.png';
 egg2.img.src = 'images/ovo.png';
-egg2.bullsEye.img.src = 'images/bullseye.png';
+//egg2.bullsEye.img.src = 'images/bullseye.png';
 egg3.img.src = 'images/ovo.png';
-egg3.bullsEye.img.src = 'images/bullseye.png';
+//egg3.bullsEye.img.src = 'images/bullseye.png';
 
 document.getElementById("punteggio").innerHTML = score;
 document.getElementById("vita").innerHTML = life;

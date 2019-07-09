@@ -37,9 +37,9 @@ function setLevel(lev) {
 }
 
 function resetHensPosition() {
-    hen_1.gallina.style.left = hen_1.init_x;
-    hen_2.gallina.style.left = hen_2.init_x;
-    hen_3.gallina.style.left = hen_3.init_x;
+    hen_1.gallina.style.left = hen_1.init_x + canvas.offsetLeft;
+    hen_2.gallina.style.left = hen_2.init_x + canvas.offsetLeft;
+    hen_3.gallina.style.left = hen_3.init_x + canvas.offsetLeft;
 }
 
 function resetEggsPosition() {
@@ -58,12 +58,18 @@ function resetGame() {
     egg1.y = eggs_init_y;
     egg2.y = eggs_init_y;
     egg3.y = eggs_init_y;
+    egg1.bullseye.style.display = "none";
+    egg2.bullseye.style.display = "none";
+    egg3.bullseye.style.display = "none";
     hen_1.moving_count = hen_1.init_x;
     hen_2.moving_count = hen_2.init_x;
     hen_3.moving_count = hen_3.init_x;
     hen_1.zig_zag_count = hen_1.init_x;
     hen_2.zig_zag_count = hen_2.init_x;
     hen_3.zig_zag_count = hen_3.init_x;
+    hen_1.count = 0;
+    hen_2.count = 0;
+    hen_3.count = 0;
     basket.style.top = 580 + "px";
     basket.style.left = 630 + "px";
 }
@@ -116,7 +122,25 @@ function egg_down_while_zigzaging(egg) {
 }
 
 function show_bullsEye(egg) {
-    ctx.drawImage(egg.bullsEye.img, egg.bullsEye.x, egg.bullsEye.y,48,48);
+    if(level == 1)
+        //ctx.drawImage(egg.bullsEye.img, egg.bullsEye.x, egg.bullsEye.y, 48, 48);
+        egg.bullseye.style.left = canvas.offsetLeft/2 + egg.init_x + "px";
+    else {
+        //ctx.drawImage(egg.bullsEye.img, egg.x, egg.bullsEye.y, 48, 48);
+        var tmp = canvas.offsetLeft/2 + egg.x;
+        if(tmp > canvas.width)
+            egg.bullseye.style.left = canvas.offsetLeft/2 + egg.x - 50;        
+        else if(tmp < 40)
+            egg.bullseye.style.left = canvas.offsetLeft/2 + egg.x + 70;
+        else if(tmp < 20)
+            egg.bullseye.style.left = canvas.offsetLeft/2 + egg.x + 100;
+        else 
+            egg.bullseye.style.left = canvas.offsetLeft/2 + egg.x;
+    }
+        
+    egg.bullseye.style.top = bullsEye_init_y;
+    egg.bullseye.style.display = "block";
+    setTimeout(function() {egg.bullseye.style.display = "none";}, 1600);
 }
 
 function check_egg_hits_floor(egg) {
@@ -132,14 +156,14 @@ function check_egg_hits_floor(egg) {
 
 function check_egg_hits_canvas(egg) {
     var tmp = canvas.width;
-    if(egg.x >= tmp)
+    if(egg.x >= tmp || egg.x < -25)
         return true;
     return false;
 }
 
 function check_egg_hits_basket(egg) {
     var basketTop = basket.offsetTop - canvas.offsetTop;
-    var basketHalf = basketTop + 10;
+    var basketHalf = basketTop + 40;
     var basketLeft = basket.offsetLeft - canvas.offsetLeft;
     var basketRight = basketLeft + 78;
     if((egg.y >= basketTop) && (egg.y <= basketHalf) && (egg.x <= basketRight) && (egg.x >= basketLeft) && (basketTop > 135)) {
