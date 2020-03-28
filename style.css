@@ -148,26 +148,4 @@ canvas {
     left: 1015;
 }
 
-.bullsEye {
-    position: absolute;
-    display: none;
-    height: 37px;
-    width: 74px;
-    top: 610;
-    background: url('images/bullseye.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 20;
-}
 
-#bullsEye1 {
-    left: 125;
-}
-
-#bullsEye2 {
-    left: 560;
-}
-
-#bullsEye3 {
-    left: 995;
-}
